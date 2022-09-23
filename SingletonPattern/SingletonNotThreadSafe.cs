@@ -1,23 +1,22 @@
-﻿namespace SingletonPattern
+﻿namespace SingletonPattern;
+
+public sealed class SingletonNotThreadSafe
 {
-    public sealed class Singleton
+    private static SingletonNotThreadSafe instance = null;
+
+    private SingletonNotThreadSafe()
     {
-        private static Singleton instance = null;
+    }
 
-        private Singleton()
+    public static SingletonNotThreadSafe Instance
+    {
+        get
         {
-        }
-
-        public static Singleton Instance
-        {
-            get
+            if (instance == null)
             {
-                if (instance == null)
-                {
-                    instance = new Singleton();
-                }
-                return instance;
+                instance = new SingletonNotThreadSafe();
             }
+            return instance;
         }
     }
 }
